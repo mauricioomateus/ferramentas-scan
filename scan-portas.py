@@ -2,7 +2,7 @@ import socket, sys, threading
 
 
 def portscan(porta):
-    meuSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    meusocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     meusocket.settimeout(0.5)
      if meuSocket.connect_ex((ip,porta)) == 0:
             print("Porta: " + str(porta) + " [ABERTA]")
