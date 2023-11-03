@@ -8,7 +8,12 @@ def portscan(porta):
             print("Porta: " + str(porta) + " [ABERTA]")
             meuSocket.close()
 
-r = i #variavel para interação
+        #salvar resultado
+        arquivo = open("portas_" + ip + ".txt", "a+")
+        arquivo.write("Porta: " + str(porta) + "[ABERTA]" + '\n')
+        arquivo.close()
+
+r = 1 #variavel para interação
 
 if len(sys.argv) > 1:
     ip = sys.argv[1]    
