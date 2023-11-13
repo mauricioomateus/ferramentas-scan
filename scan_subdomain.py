@@ -18,10 +18,10 @@ def scanner_domain(dominio, subdominio):
         
 threads = []
 if __name__ == '__main__':
-    url = sys.argv[1]
+    url = valor.url
     print('\n')
 
-    wordlist = sys.argv[2]
+    wordlist = valor.wordlist
     with open(wordlist) as file:
         nome = file.read()
         subdominio = nome.splitlines()
