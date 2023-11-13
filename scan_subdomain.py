@@ -12,7 +12,7 @@ def scanner_domain(dominio, subdominio):
     
     try:
         requests.get(url, timeout=2)
-        print(f'[+] {url} [200 Ok]')
+        print(f'[+] {url}')
     except requests.ConnectionError:
         pass 
         
