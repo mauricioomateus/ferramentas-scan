@@ -1,4 +1,11 @@
-import requests, sys
+import requests, argparse, threading
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--url', type=str, required=True)
+parser.add_argument('--wordlist', type=str, required=True)
+#parser.add_argument('-h', type=str, required=True)
+valor = parser.parse_args()
 
 def scanner_domain(dominio, subdominio):
     url = f'https://{subdominio}.{dominio}'
@@ -8,9 +15,10 @@ def scanner_domain(dominio, subdominio):
         print(f'[+] {url} [200 Ok]')
     except requests.ConnectionError:
         pass 
-
+        
+threads = []
 if __name__ == '__main__':
-    dominio = sys.argv[1]
+    url = sys.argv[1]
     print('\n')
 
     wordlist = sys.argv[2]
@@ -20,5 +28,7 @@ if __name__ == '__main__':
     
     print("Iniciando o Scan de Subdominios...")
     for sub_dominio in subdominio:
-       scanner_domain(dominio, sub_dominio)
+        t = threading.Thread(target=scanner_domain, args=(url,sub_dominio)) #definindo a função que trabalhará com threads e seus parametros
+        threads.append(t) #adicionando a função com paralelismo na lista        
+        t.start() #iniciando os threads
     print("Fim do Scanner")
